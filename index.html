@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lost Package Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="chat-wrapper">
+      <div class="top-bar">
+        <button id="settings-btn" class="settings-btn" aria-haspopup="dialog" aria-controls="settings-modal">Settings</button>
+      </div>
+      <div id="chat" class="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <form id="chat-form" class="chat-form" autocomplete="off">
+        <input type="text" id="user-input" name="message" placeholder="Type your response..." aria-label="Your message">
+        <button type="submit" aria-label="Send message">Send</button>
+      </form>
+    </div>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-hidden="true">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 id="settings-title">Settings</h2>
+          <button id="settings-close" class="icon-btn" aria-label="Close settings">✕</button>
+        </div>
+        <div class="modal-body">
+          <label for="gemini-key" class="field-label">Gemini API Key</label>
+          <input type="password" id="gemini-key" class="text-field" placeholder="Enter your Gemini API key" aria-describedby="gemini-help">
+          <p id="gemini-help" class="help-text">Your key is stored locally in this browser only.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="settings-save" class="primary-btn">Save</button>
+          <button id="settings-cancel" class="secondary-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+  </html>
+
+
