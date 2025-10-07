@@ -1,4 +1,8 @@
 /* Base layout */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -149,6 +153,7 @@ html, body {
   border-radius: 10px;
   border: 1px solid #d1d5db;
   outline: none;
+  box-sizing: border-box;
 }
 
 .help-text {
@@ -179,6 +184,32 @@ html, body {
   border: 1px solid #d1d5db;
   background: #fff;
   cursor: pointer;
+}
+
+/* Loading message styles */
+.loading-message {
+  display: block;
+  max-width: 60%;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  line-height: 1.35;
+  background: #eef2ff;
+  color: #1e3a8a;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.loading-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loading-dots {
+  display: inline-block;
+  margin-left: 0;
+  min-width: 20px;
 }
 
 

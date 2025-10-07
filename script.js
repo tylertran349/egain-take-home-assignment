@@ -71,6 +71,52 @@ document.addEventListener('DOMContentLoaded', function onReady() {
     chatEl.scrollTop = chatEl.scrollHeight;
   }
 
+  function showLoadingMessage() {
+    var loadingBubble = document.createElement('div');
+    loadingBubble.className = 'loading-message';
+    loadingBubble.innerHTML = 'Thinking<span class="loading-dots"></span>';
+    chatEl.appendChild(loadingBubble);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    
+    // Trigger animation after a brief delay
+    setTimeout(function() {
+      loadingBubble.classList.add('show');
+    }, 10);
+    
+    // Start the dots animation
+    var dotsElement = loadingBubble.querySelector('.loading-dots');
+    var dotCount = 0;
+    var dotsInterval = setInterval(function() {
+      dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3
+      var dots = '';
+      for (var i = 0; i < dotCount; i++) {
+        dots += '.';
+      }
+      dotsElement.textContent = dots;
+    }, 500);
+    
+    // Store the interval ID so we can clear it later
+    loadingBubble.dotsInterval = dotsInterval;
+    
+    return loadingBubble;
+  }
+
+  function hideLoadingMessage(loadingElement) {
+    if (loadingElement && loadingElement.parentNode) {
+      // Clear the dots animation interval
+      if (loadingElement.dotsInterval) {
+        clearInterval(loadingElement.dotsInterval);
+      }
+      
+      loadingElement.classList.remove('show');
+      setTimeout(function() {
+        if (loadingElement.parentNode) {
+          loadingElement.parentNode.removeChild(loadingElement);
+        }
+      }, 300); // Match the CSS transition duration
+    }
+  }
+
   appendMessage(
     'bot',
     'Hi! I can help you with your lost package. Can you provide me with the tracking number?'
@@ -132,6 +178,8 @@ document.addEventListener('DOMContentLoaded', function onReady() {
       return '';
     }
 
+    var loadingElement = showLoadingMessage();
+
     var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + encodeURIComponent(apiKey);
 
     var requestBody = {
@@ -156,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
       });
       if (!resp.ok) {
         console.error('Gemini request failed with status', resp.status);
+        hideLoadingMessage(loadingElement);
         return '';
       }
       var data = await resp.json();
@@ -172,9 +221,11 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 
       // Log ONLY the tracking number
       console.log(text);
+      hideLoadingMessage(loadingElement);
       return text;
     } catch (err) {
       console.error('Gemini request error', err);
+      hideLoadingMessage(loadingElement);
       return '';
     }
   }
@@ -187,6 +238,8 @@ document.addEventListener('DOMContentLoaded', function onReady() {
       return 'unknown';
     }
 
+    var loadingElement = showLoadingMessage();
+
     var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + encodeURIComponent(apiKey);
 
     var prompt = '';
@@ -195,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
     } else if (context === 'another_package') {
       prompt = 'You are analyzing a user response to a question about whether they need help with another package. Determine the user\'s intent and respond with ONLY one of these exact words: "negative" (if they don\'t need help with another package), "affirmative" (if they want to track another package), or "unclear" (if the intent is ambiguous).\n\nUser response: "' + userText + '"';
     } else {
+      hideLoadingMessage(loadingElement);
       return 'unknown';
     }
 
@@ -219,6 +273,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
       });
       if (!resp.ok) {
         console.error('Gemini request failed with status', resp.status);
+        hideLoadingMessage(loadingElement);
         return 'unknown';
       }
       var data = await resp.json();
@@ -235,11 +290,14 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 
       // Ensure we only return valid intents
       if (['negative', 'affirmative', 'unclear'].includes(text)) {
+        hideLoadingMessage(loadingElement);
         return text;
       }
+      hideLoadingMessage(loadingElement);
       return 'unclear';
     } catch (err) {
       console.error('Gemini request error', err);
+      hideLoadingMessage(loadingElement);
       return 'unknown';
     }
   }
