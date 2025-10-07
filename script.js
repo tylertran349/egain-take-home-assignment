@@ -320,6 +320,20 @@ document.addEventListener('DOMContentLoaded', function onReady() {
     }
   }
 
+  // Handle Enter key in textarea (Enter to submit, Shift+Enter for new line)
+  inputEl.addEventListener('keydown', function onKeyDown(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      formEl.dispatchEvent(new Event('submit'));
+    }
+  });
+
+  // Auto-resize textarea
+  inputEl.addEventListener('input', function onInput() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+  });
+
   formEl.addEventListener('submit', function onSubmit(e) {
     e.preventDefault();
     var userText = (inputEl.value || '').trim();
@@ -327,6 +341,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 
     appendMessage('user', userText);
     inputEl.value = '';
+    inputEl.style.height = 'auto'; // Reset height after clearing
 
     // If awaiting confirmation after delivered message, use Gemini to detect intent
     if (awaitingDeliveredConfirmation) {
