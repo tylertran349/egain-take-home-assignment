@@ -1,10 +1,10 @@
 # [Lost Package Tracking Chatbot](https://tylertran349.github.io/egain-take-home-assignment/)
 
-A simple web-based chatbot that helps users track their packages using Google's Gemini AI. The chatbot can determine if packages are in transit or already delivered, and provides helpful responses based on the package status.
+A simple web-based chatbot that helps users track their packages. The chatbot can determine if packages are in transit or already delivered, and provides helpful responses based on the package status. Google's Gemini LLM is used to understand user responses and determine which branch in the conversation flow to follow.
 
 ## Setup/Installation Instructions
 
-### Getting Your Google Gemini API Key
+### Getting Your Google Gemini API Key (required)
 
 1. Open your web browser and navigate to https://console.cloud.google.com/projectcreate (log in with your Google account if prompted).
 
@@ -49,7 +49,7 @@ The chatbot uses a simple approach to help users with package tracking:
 
 ### Technical Details
 
-- Built with vanilla HTML, CSS, and JavaScript
+- Built with HTML, CSS, and JavaScript
 - Uses Google Gemini 2.5 Flash model for AI processing
 - Stores API key locally in browser storage
 - Responsive design that works on desktop and mobile
