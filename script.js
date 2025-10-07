@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
     if (awaitingDeliveredConfirmation) {
       detectUserIntent(userText, 'delivered_confirmation').then(function(intent) {
         if (intent === 'negative') {
-          appendMessage('bot', "Okay, please ask your neighbors or check your mailbox or porch. If you still can't find it, then please contact us again so we can file a lost package claim for you.");
+          appendMessage('bot', "I recommend checking with your neighbors and thoroughly searching your mailbox and porch area. If you're still unable to locate the package, please contact us again and we'll be happy to file a lost package claim for you.");
           appendMessage('bot', 'Do you need help with another package? If so, please provide the tracking number.');
           awaitingDeliveredConfirmation = false;
           awaitingAnotherPackageResponse = true;
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
     if (awaitingAnotherPackageResponse) {
       detectUserIntent(userText, 'another_package').then(function(intent) {
         if (intent === 'negative') {
-          appendMessage('bot', 'Thank you for using our package tracking service. Have a great day!');
+          appendMessage('bot', "I'm glad I could help you! If you have any more questions or need further assistance, feel free to contact us at anytime.");
           awaitingAnotherPackageResponse = false;
           return;
         }
