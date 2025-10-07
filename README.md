@@ -2,7 +2,7 @@
 
 A simple web-based chatbot that helps users track their packages. The chatbot can determine if packages are in transit or already delivered, and provides helpful responses based on the package status. Google's Gemini LLM is used to understand user responses and determine which branch in the conversation flow to follow.
 
-> **Presentation**: For a detailed overview of this project, including the technical implementation and design decisions, please refer to the [eGain Take Home Assignment Presentation.pdf](eGain%20Take%20Home%20Assignment%20Presentation.pdf).
+For a detailed overview of this project, including the technical implementation and design decisions, please refer to [eGain Take Home Assignment Presentation.pdf](eGain%20Take%20Home%20Assignment%20Presentation.pdf).
 
 ## Setup/Installation Instructions
 
