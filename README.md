@@ -39,6 +39,8 @@ The chatbot uses a simple approach to help users with package tracking:
 
 ### Conversation Flow
 
+![Conversation Decision Tree](conversation-decision-tree.png)
+
 1. User provides a tracking number (or text containing a tracking number)
 2. The AI extracts the tracking number from the user's message
 3. The bot checks if the tracking number is valid
