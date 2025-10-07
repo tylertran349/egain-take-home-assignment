@@ -26,7 +26,12 @@
         </div>
         <div class="modal-body">
           <label for="gemini-key" class="field-label">Gemini API Key</label>
-          <input type="password" id="gemini-key" class="text-field" placeholder="Enter your Gemini API key" aria-describedby="gemini-help">
+          <div class="input-container">
+            <input type="password" id="gemini-key" class="text-field" placeholder="Enter your Gemini API key" aria-describedby="gemini-help">
+            <button type="button" id="toggle-password" class="toggle-password-btn" aria-label="Show password">
+              Show
+            </button>
+          </div>
           <p id="gemini-help" class="help-text">Your key is stored locally in this browser only.</p>
         </div>
         <div class="modal-footer">

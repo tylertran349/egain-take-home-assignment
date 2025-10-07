@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
   var modalCancel = document.getElementById('settings-cancel');
   var modalSave = document.getElementById('settings-save');
   var keyInput = document.getElementById('gemini-key');
+  var togglePasswordBtn = document.getElementById('toggle-password');
 
   // Valid tracking numbers (only these 10 are accepted)
   var VALID_TRACKING_NUMBERS = [
@@ -167,6 +168,23 @@ document.addEventListener('DOMContentLoaded', function onReady() {
         else localStorage.removeItem('gemini_api_key');
       } catch (e) {}
       closeModal();
+    });
+  }
+
+  // Toggle password visibility
+  if (togglePasswordBtn) {
+    togglePasswordBtn.addEventListener('click', function () {
+      if (keyInput.type === 'password') {
+        // Currently hidden, show it
+        keyInput.type = 'text';
+        togglePasswordBtn.textContent = 'Hide';
+        togglePasswordBtn.setAttribute('aria-label', 'Hide password');
+      } else {
+        // Currently visible, hide it
+        keyInput.type = 'password';
+        togglePasswordBtn.textContent = 'Show';
+        togglePasswordBtn.setAttribute('aria-label', 'Show password');
+      }
     });
   }
 
@@ -404,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
       }
     });
   }
+
 });
 
 

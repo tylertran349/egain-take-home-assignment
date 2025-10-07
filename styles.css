@@ -147,13 +147,46 @@ html, body {
   font-weight: 600;
 }
 
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .text-field {
   width: 100%;
-  padding: 12px;
+  padding: 12px 40px 12px 12px;
   border-radius: 10px;
   border: 1px solid #d1d5db;
   outline: none;
   box-sizing: border-box;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.toggle-password-btn:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.toggle-password-btn:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }
 
 .help-text {
