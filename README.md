@@ -1,4 +1,4 @@
-# Lost Package Chatbot
+# [Lost Package Tracking Chatbot](https://tylertran349.github.io/egain-take-home-assignment/)
 
 A simple web-based chatbot that helps users track their packages using Google's Gemini AI. The chatbot can determine if packages are in transit or already delivered, and provides helpful responses based on the package status.
 
